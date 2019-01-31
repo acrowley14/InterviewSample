@@ -106,9 +106,6 @@ public class LineCounter {
 		
 		char[] chars = line.toCharArray();
 		
-		int counter = 0;
-		boolean show = false;
-		
 		for (char c : chars) {
 			if (!inBlock) {
 				switch (c) {
@@ -125,7 +122,7 @@ public class LineCounter {
 					break;
 					case '*': 
 						if (sawSlash && inString == false) {
-							// We've started a block comment if we find a /*
+							// We've started a block comment if we find a /* that isn't in a string
 							inBlock = true;
 						} else {
 							sawStar = true;
@@ -136,8 +133,8 @@ public class LineCounter {
 					break;
 					default: 
 						
-						/* If we're not in a block comment, didn't see a * or /, and found an ASCII character
-						* greater than SPACE ---> then we found Java code! */
+						/* If we're not in a block comment, didn't see a * or /, and found an ASCII 
+						* character greater than SPACE ---> then we found Java code! */
 						
 						if (c > 32) foundCode = true;
 						sawStar = false;
@@ -184,7 +181,7 @@ public class LineCounter {
 	}
 	
 	public static void main(String[] args) {
-		File testFile = new File("/Users/Alex/eclipse-workspace/SynopsisSample/src/lineCounter/Test3.java");
+		File testFile = new File("");
 		System.out.println(countLines(testFile));
 	}
 }
