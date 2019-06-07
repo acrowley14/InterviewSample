@@ -121,7 +121,7 @@ public class LineCounter {
 						}
 					break;
 					case '*': 
-						if (sawSlash && inString == false) {
+						if (sawSlash && !inString) {
 							// We've started a block comment if we find a /* that isn't in a string
 							inBlock = true;
 						} else {
